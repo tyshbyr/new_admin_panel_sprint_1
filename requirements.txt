@@ -1,0 +1,6 @@
+Faker==16.6.0
+psycopg2-binary==2.9.5
+django==3.2
+flake8==4.0
+python-dotenv==0.21.1
+django-split-settings==1.2.0
