@@ -35,8 +35,8 @@ class Genre(UUIDMixin, TimeStampedMixin):
 class Filmwork(UUIDMixin, TimeStampedMixin):
     
     class Type(models.TextChoices):
-        MOVIE = 'MO', _('Movie')
-        TV_SHOW = 'TV', _('Show')
+        MOVIE = 'movie', _('Movie')
+        TV_SHOW = 'tv_show', _('TV Show')
         
     title = models.CharField(_('Title'), max_length=255)
     description = models.TextField(_('Description'), blank=True)
@@ -44,7 +44,7 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
     rating = models.FloatField(_('Rating'), blank=True,
                                validators=[MinValueValidator(0),
                                            MaxValueValidator(100)])
-    type = models.CharField(_('Type'), max_length=2, choices=Type.choices)
+    type = models.CharField(_('Type'), max_length=7, choices=Type.choices)
     genres = models.ManyToManyField(Genre, through='GenreFilmwork')
     certificate = models.CharField(_('certificate'), max_length=512, blank=True)
     file_path = models.FileField(_('file'), blank=True, null=True, upload_to='movies/')
@@ -59,8 +59,14 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
     
 
 class Person(UUIDMixin, TimeStampedMixin):
-    full_name = models.CharField(_('Name'), max_length=255)
     
+    class Gender(models.TextChoices):
+        MALE = 'male', _('male')
+        FEMALE = 'female', _('female')
+        
+    full_name = models.CharField(_('Name'), max_length=255)
+    gender = models.TextField(_('gender'), choices=Gender.choices, null=True)
+
     class Meta:
         db_table = "content\".\"person"
         verbose_name = _('Person')
@@ -81,6 +87,8 @@ class PersonFilmwork(UUIDMixin):
         verbose_name = _('Actor/creator')
         verbose_name_plural = _('Actors/creators')
     
+    def __str__(self) -> str:
+        return self.person.full_name
     
 class GenreFilmwork(UUIDMixin):
     film_work = models.ForeignKey(Filmwork, on_delete=models.CASCADE)
@@ -91,3 +99,6 @@ class GenreFilmwork(UUIDMixin):
         db_table = "content\".\"genre_film_work"
         verbose_name = _('Genre of film')
         verbose_name_plural = _('Genres of film')
+        
+    def __str__(self) -> str:
+        return self.genre.name
