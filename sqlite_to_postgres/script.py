@@ -42,15 +42,13 @@ class PostgresSaver:
     pg_conn: _connection
     pg_table: TableColumns
 
-    def save_all_data(self, data):
+    def save_all_data(self, data) -> None:
         with self.pg_conn.cursor() as curs:
             columns = self.pg_table.columns.split(',')
             placeholder = '\t'.join('%s' for _ in range(len(columns)))
 
             for value in data:
-                print(value)
                 args = ''.join(f'{placeholder}\n' % item for item in value)
-                print(args)
                 data_file = io.StringIO()
                 data_file.write(args)
                 data_file.seek(0)
