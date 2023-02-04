@@ -65,7 +65,7 @@ ALTER TABLE content.person_film_work
     REFERENCES content.person (id) 
     ON DELETE CASCADE;
 
-CREATE UNIQUE INDEX film_work_person_idx ON content.person_film_work (film_work_id, person_id);
+CREATE UNIQUE INDEX film_work_person_role_idx ON content.person_film_work (film_work_id, person_id, role);
 CREATE UNIQUE INDEX film_work_genre_idx ON content.genre_film_work (genre_id, film_work_id);
 CREATE INDEX film_work_idx ON content.film_work (title);
 CREATE INDEX film_work_creation_date_idx ON content.film_work (creation_date);
