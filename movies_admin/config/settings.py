@@ -11,16 +11,16 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
 from pathlib import Path
-from split_settings.tools import include
 
+from dotenv import load_dotenv
+from split_settings.tools import include
 
 load_dotenv()
 
 include(
     'components/database.py',
-) 
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

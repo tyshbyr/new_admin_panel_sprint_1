@@ -13,6 +13,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='filmwork',
             name='type',
-            field=models.CharField(choices=[('movie', 'Movie'), ('tv_show', 'TV Show')], max_length=7, verbose_name='Type'),
+            field=models.CharField(
+                choices=[
+                    ('movie',
+                     'Movie'),
+                    ('tv_show',
+                     'TV Show')],
+                max_length=7,
+                verbose_name='Type'),
         ),
     ]

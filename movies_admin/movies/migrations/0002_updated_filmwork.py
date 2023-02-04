@@ -13,11 +13,18 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='filmwork',
             name='certificate',
-            field=models.CharField(blank=True, max_length=512, verbose_name='certificate'),
+            field=models.CharField(
+                blank=True,
+                max_length=512,
+                verbose_name='certificate'),
         ),
         migrations.AddField(
             model_name='filmwork',
             name='file_path',
-            field=models.FileField(blank=True, null=True, upload_to='movies/', verbose_name='file'),
+            field=models.FileField(
+                blank=True,
+                null=True,
+                upload_to='movies/',
+                verbose_name='file'),
         ),
     ]

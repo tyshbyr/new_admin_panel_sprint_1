@@ -13,6 +13,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='filmwork',
             name='certificate',
-            field=models.CharField(blank=True, max_length=512, null=True, verbose_name='certificate'),
+            field=models.CharField(
+                blank=True,
+                max_length=512,
+                null=True,
+                verbose_name='certificate'),
         ),
     ]

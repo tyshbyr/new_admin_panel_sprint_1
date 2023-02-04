@@ -1,11 +1,12 @@
 from django.contrib import admin
-from .models import Genre, Filmwork, Person, GenreFilmwork, PersonFilmwork
+
+from .models import Filmwork, Genre, GenreFilmwork, Person, PersonFilmwork
 
 
 class GenreFilmworkInline(admin.TabularInline):
     model = GenreFilmwork
     autocomplete_fields = ('genre',)
-    
+
 
 class PersonFilmworkInline(admin.TabularInline):
     model = PersonFilmwork
@@ -14,7 +15,7 @@ class PersonFilmworkInline(admin.TabularInline):
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
-    search_fields = ('name', 'description',) 
+    search_fields = ('name', 'description',)
 
 
 @admin.register(Filmwork)

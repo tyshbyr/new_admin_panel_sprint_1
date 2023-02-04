@@ -13,6 +13,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='person',
             name='gender',
-            field=models.TextField(choices=[('male', 'male'), ('female', 'female')], null=True, verbose_name='gender'),
+            field=models.TextField(
+                choices=[
+                    ('male',
+                     'male'),
+                    ('female',
+                     'female')],
+                null=True,
+                verbose_name='gender'),
         ),
     ]

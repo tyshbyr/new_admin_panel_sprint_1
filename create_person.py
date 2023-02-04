@@ -1,10 +1,9 @@
 import contextlib
 import random
 import uuid
-import psycopg2
-
-
 from datetime import datetime
+
+import psycopg2
 from faker import Faker
 from psycopg2.extras import execute_batch
 
