@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS content.film_work (
     creation_date DATE,
     rating FLOAT,
     type TEXT NOT NULL,
+    certificate TEXT NOT NULL,
+    file_path TEXT NOT NULL,
     created timestamp with time zone,
     modified timestamp with time zone
 ); 
@@ -22,6 +24,7 @@ CREATE TABLE IF NOT EXISTS content.film_work (
 CREATE TABLE IF NOT EXISTS content.person (
     id uuid PRIMARY KEY,
     full_name TEXT NOT NULL,
+    gender TEXT NOT NULL,
     created timestamp with time zone,
     modified timestamp with time zone
 );
@@ -66,9 +69,8 @@ ALTER TABLE content.person_film_work
     ON DELETE CASCADE;
 
 CREATE UNIQUE INDEX film_work_person_role_idx ON content.person_film_work (film_work_id, person_id, role);
-CREATE UNIQUE INDEX film_work_genre_idx ON content.genre_film_work (genre_id, film_work_id);
-CREATE INDEX film_work_idx ON content.film_work (title);
-CREATE INDEX film_work_creation_date_idx ON content.film_work (creation_date);
-CREATE INDEX film_work_rating_idx ON content.film_work (rating);
-CREATE INDEX person_idx ON content.person (full_name);
-CREATE INDEX genre_idx ON content.genre (name);
+CREATE UNIQUE INDEX genre_film_work_idx ON content.genre_film_work (genre_id, film_work_id);
+CREATE INDEX title_idx ON content.film_work (title);
+CREATE INDEX creation_date_idx ON content.film_work (creation_date);
+CREATE INDEX rating_idx ON content.film_work (rating);
+CREATE INDEX full_name_idx ON content.person (full_name);
