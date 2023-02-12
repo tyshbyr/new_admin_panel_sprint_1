@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS content.film_work (
     creation_date DATE,
     rating FLOAT,
     type TEXT NOT NULL,
-    certificate TEXT NOT NULL,
-    file_path TEXT NOT NULL,
+    certificate TEXT,
+    file_path TEXT,
     created timestamp with time zone,
     modified timestamp with time zone
 ); 
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS content.film_work (
 CREATE TABLE IF NOT EXISTS content.person (
     id uuid PRIMARY KEY,
     full_name TEXT NOT NULL,
-    gender TEXT NOT NULL,
+    gender TEXT,
     created timestamp with time zone,
     modified timestamp with time zone
 );
