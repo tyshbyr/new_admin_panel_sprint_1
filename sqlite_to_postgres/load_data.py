@@ -18,11 +18,5 @@ def load_from_sqlite(connection: sqlite3.Connection, pg_conn: _connection, batch
 
 
 if __name__ == '__main__':
-    dsl = {
-        'dbname': 'movies_database',
-        'user': 'app',
-        'password': '123qwe',
-        'host': '127.0.0.1',
-        'port': 5432}
-    with conn_context(settings.SQLITE_FILE) as sqlite_conn, psycopg2.connect(**dsl, cursor_factory=DictCursor) as pg_conn:
-        load_from_sqlite(sqlite_conn, pg_conn, settings.BATCH_SIZE, settings.CLASS_TABLE_TUPLE)
+    with conn_context(settings.SQLITE_FILE) as sqlite_conn, psycopg2.connect(**settings.dsl, cursor_factory=DictCursor) as pg_conn:
+        load_from_sqlite(sqlite_conn, pg_conn, settings.BATCH_SIZE, settings.CLASS_TABLE)
