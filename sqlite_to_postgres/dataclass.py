@@ -23,8 +23,8 @@ class TimeStampedMixin:
     def to_datetime(self):
         self.created_at = parser.parse(self.created_at)
         self.updated_at = parser.parse(self.updated_at)
-        
-   
+
+
 @dataclass
 class UUIDMixin:
     id: uuid.UUID
@@ -50,13 +50,13 @@ class Genre(TimeStampedMixin, UUIDMixin, BasedMixin):
             description=description,
             created_at=created_at,
             updated_at=updated_at)
-    
-    def to_pg(self) ->dict:
-        return {'id':str(self.id), 
-                'name':self.name, 
-                'description':str(self.description), 
-                'created':str(self.created_at), 
-                'modified':str(self.updated_at)}
+
+    def to_pg(self) -> dict:
+        return {'id': str(self.id),
+                'name': self.name,
+                'description': str(self.description),
+                'created': str(self.created_at),
+                'modified': str(self.updated_at)}
 
 
 @dataclass
@@ -74,12 +74,12 @@ class Person(TimeStampedMixin, UUIDMixin, BasedMixin):
             full_name=full_name,
             created_at=created_at,
             updated_at=updated_at)
-        
-    def to_pg(self) ->dict:
-        return {'id':str(self.id), 
-                'full_name':self.full_name,
-                'created':str(self.created_at), 
-                'modified':str(self.updated_at)}
+
+    def to_pg(self) -> dict:
+        return {'id': str(self.id),
+                'full_name': self.full_name,
+                'created': str(self.created_at),
+                'modified': str(self.updated_at)}
 
 
 @dataclass
@@ -111,17 +111,17 @@ class Filmwork(TimeStampedMixin, UUIDMixin, BasedMixin):
             file_path=str(file_path),
             created_at=created_at,
             updated_at=updated_at)
-    
-    def to_pg(self) ->dict:
-        return {'id':str(self.id), 
-                'title':self.title, 
-                'description':self.description,
-                'creation_date':str(self.creation_date),
-                'rating':str(self.rating), 
-                'type':self.type, 
-                'file_path':self.file_path,
-                'created':str(self.created_at), 
-                'modified':str(self.updated_at)}
+
+    def to_pg(self) -> dict:
+        return {'id': str(self.id),
+                'title': self.title,
+                'description': self.description,
+                'creation_date': str(self.creation_date),
+                'rating': str(self.rating),
+                'type': self.type,
+                'file_path': self.file_path,
+                'created': str(self.created_at),
+                'modified': str(self.updated_at)}
 
 
 @dataclass
@@ -145,13 +145,13 @@ class PersonFilmwork(UUIDMixin, BasedMixin):
             person_id=person_id,
             role=role,
             created_at=created_at)
-        
-    def to_pg(self) ->dict:
-        return {'id':str(self.id),
-                'film_work_id':str(self.film_work_id), 
-                'person_id':str(self.person_id), 
-                'role':self.role,
-                'created':str(self.created_at)}
+
+    def to_pg(self) -> dict:
+        return {'id': str(self.id),
+                'film_work_id': str(self.film_work_id),
+                'person_id': str(self.person_id),
+                'role': self.role,
+                'created': str(self.created_at)}
 
 
 @dataclass
@@ -173,9 +173,9 @@ class GenreFilmwork(UUIDMixin, BasedMixin):
             film_work_id=film_work_id,
             genre_id=genre_id,
             created_at=created_at)
-        
-    def to_pg(self) ->dict:
-        return {'id':str(self.id),
-                'film_work_id':str(self.film_work_id), 
-                'genre_id':str(self.genre_id), 
-                'created':str(self.created_at)}
+
+    def to_pg(self) -> dict:
+        return {'id': str(self.id),
+                'film_work_id': str(self.film_work_id),
+                'genre_id': str(self.genre_id),
+                'created': str(self.created_at)}
