@@ -40,7 +40,7 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
         TV_SHOW = 'tv_show', _('TV Show')
 
     title = models.CharField(_('Title'), max_length=255)
-    description = models.TextField(_('Description'), default='')
+    description = models.TextField(_('Description'),  default='', blank=True)
     creation_date = models.DateField(_('Creation date'), blank=True)
     rating = models.FloatField(_('Rating'), blank=True,
                                validators=[MinValueValidator(0),
@@ -50,11 +50,11 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
     certificate = models.CharField(
         _('certificate'),
         max_length=512,
-        default='')
+        default='', blank=True)
     file_path = models.FileField(
         _('file'),
         default='',
-        upload_to='movies/')
+        upload_to='movies/', blank=True)
 
     class Meta:
         db_table = "content\".\"film_work"

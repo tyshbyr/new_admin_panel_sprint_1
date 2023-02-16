@@ -6,11 +6,13 @@ from .models import Filmwork, Genre, GenreFilmwork, Person, PersonFilmwork
 class GenreFilmworkInline(admin.TabularInline):
     model = GenreFilmwork
     autocomplete_fields = ('genre',)
+    extra = 0
 
 
 class PersonFilmworkInline(admin.TabularInline):
     model = PersonFilmwork
     autocomplete_fields = ('person',)
+    extra = 0
 
 
 @admin.register(Genre)
